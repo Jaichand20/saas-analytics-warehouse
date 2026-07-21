@@ -5,7 +5,6 @@ STRING - the raw layer keeps the data exactly as "extracted"; parsing and
 type-casting is the staging layer's job.
 """
 
-import os
 import sys
 from pathlib import Path
 
@@ -13,6 +12,8 @@ from dagster import MaterializeResult, MetadataValue, asset
 from dagster_gcp import BigQueryResource
 from dotenv import load_dotenv
 from google.cloud import bigquery
+
+from saas_pipeline.sql_utils import ensure_dataset
 
 load_dotenv()
 
@@ -23,7 +24,6 @@ if str(DATA_GENERATOR_DIR) not in sys.path:
 from generate_synthetic_data import DEFAULT_OUTPUT_DIR, generate_dataset  # noqa: E402
 
 RAW_DATASET = "raw"
-BQ_LOCATION = os.environ.get("BQ_LOCATION", "US")
 
 RAW_TABLES = {
     "accounts_raw": "accounts_raw.csv",
@@ -44,10 +44,7 @@ def synthetic_dataset_files() -> MaterializeResult:
 
 
 def _load_csv_as_raw_table(client, csv_path, table_name):
-    dataset_ref = bigquery.DatasetReference(client.project, RAW_DATASET)
-    dataset = bigquery.Dataset(dataset_ref)
-    dataset.location = BQ_LOCATION
-    client.create_dataset(dataset, exists_ok=True)
+    dataset_ref = ensure_dataset(client, RAW_DATASET)
 
     with open(csv_path, "rb") as source_file:
         header = source_file.readline().decode("utf-8").strip().split(",")
