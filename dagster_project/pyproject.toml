@@ -1,0 +1,7 @@
+[tool.dagster]
+module_name = "saas_pipeline.definitions"
+
+[project]
+name = "saas_pipeline"
+version = "0.1.0"
+requires-python = ">=3.10"

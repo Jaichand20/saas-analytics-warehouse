@@ -2,6 +2,7 @@
 .env
 *service-account*.json
 *credentials*.json
+secrets/
 
 # Python
 __pycache__/
