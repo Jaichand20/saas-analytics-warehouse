@@ -1,0 +1,27 @@
+# Secrets
+.env
+*service-account*.json
+*credentials*.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Dagster
+dagster_project/**/storage/
+dagster_project/**/.dagster_home/
+dagit_home/
+
+# Data
+data_generator/output/
+*.csv
+*.parquet
+
+# Power BI cache
+powerbi/*.pbix.bak
+
+# OS
+.DS_Store
+Thumbs.db
