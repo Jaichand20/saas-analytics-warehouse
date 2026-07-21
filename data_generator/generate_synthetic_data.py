@@ -97,26 +97,24 @@ def make_messy_invoices(invoices_df, rng):
     return df
 
 
-def main():
-    parser = argparse.ArgumentParser(description="Generate the synthetic SaaS dataset.")
-    parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--num-accounts", type=int, default=300)
-    parser.add_argument("--start-date", type=str, default="2024-01-01")
-    parser.add_argument("--end-date", type=str, default="2025-06-30")
-    parser.add_argument("--output-dir", type=str, default=str(DEFAULT_OUTPUT_DIR))
-    args = parser.parse_args()
+def generate_dataset(seed=42, num_accounts=300, start_date="2024-01-01", end_date="2025-06-30", output_dir=None):
+    """Builds the full synthetic dataset and writes messy raw CSVs to output_dir.
 
-    rng = np.random.default_rng(args.seed)
+    Returns the dict of {filename: DataFrame} that was written, so callers
+    (the CLI, or a Dagster asset) can report row counts without re-reading the
+    files back off disk.
+    """
+    rng = np.random.default_rng(seed)
     faker = Faker()
-    Faker.seed(args.seed)
+    Faker.seed(seed)
 
-    start_date = pd.Timestamp(args.start_date)
-    end_date = pd.Timestamp(args.end_date)
-    output_dir = Path(args.output_dir)
+    start_date = pd.Timestamp(start_date)
+    end_date = pd.Timestamp(end_date)
+    output_dir = Path(output_dir) if output_dir else DEFAULT_OUTPUT_DIR
     output_dir.mkdir(parents=True, exist_ok=True)
 
     plans_df = generate_plans()
-    accounts_df = generate_accounts(rng, faker, args.num_accounts, start_date, end_date)
+    accounts_df = generate_accounts(rng, faker, num_accounts, start_date, end_date)
     subscription_events_df = generate_subscription_events(rng, accounts_df, plans_df, end_date)
     active_intervals = build_active_intervals(subscription_events_df)
     usage_events_df = generate_usage_events(rng, active_intervals, end_date)
@@ -134,6 +132,26 @@ def main():
         path = output_dir / filename
         df.to_csv(path, index=False)
         print(f"wrote {len(df):>8,} rows -> {path}")
+
+    return outputs
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Generate the synthetic SaaS dataset.")
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--num-accounts", type=int, default=300)
+    parser.add_argument("--start-date", type=str, default="2024-01-01")
+    parser.add_argument("--end-date", type=str, default="2025-06-30")
+    parser.add_argument("--output-dir", type=str, default=str(DEFAULT_OUTPUT_DIR))
+    args = parser.parse_args()
+
+    generate_dataset(
+        seed=args.seed,
+        num_accounts=args.num_accounts,
+        start_date=args.start_date,
+        end_date=args.end_date,
+        output_dir=args.output_dir,
+    )
 
 
 if __name__ == "__main__":

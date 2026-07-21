@@ -1,9 +1,10 @@
 from dagster import Definitions
 
+from saas_pipeline.assets.raw import raw_assets
 from saas_pipeline.resources import bigquery_resource
 
 # Assets are added phase by phase (raw -> staging -> core -> marts).
 defs = Definitions(
-    assets=[],
+    assets=[*raw_assets],
     resources={"bigquery": bigquery_resource},
 )
