@@ -5,9 +5,12 @@ Add these in Power BI as new measures (Model view -> right-click the relevant ta
 ## On `mrr_monthly`
 
 ```dax
-Total MRR = MAX(mrr_monthly[total_mrr])
+Total MRR =
+VAR LatestMonth = CALCULATE(MAX(mrr_monthly[month_start]))
+RETURN
+CALCULATE(SUM(mrr_monthly[total_mrr]), mrr_monthly[month_start] = LatestMonth)
 ```
-Latest month's total MRR. Use `MAX` (not `SUM`) since `mrr_monthly` is already one row per month - summing across months would double-count.
+Latest month's total MRR - filtered to the max `month_start`, not a plain `MAX(total_mrr)` (which would return the all-time peak instead of the current value if MRR ever dips month-to-month, as it does here).
 
 ```dax
 Net New MRR (Latest Month) =

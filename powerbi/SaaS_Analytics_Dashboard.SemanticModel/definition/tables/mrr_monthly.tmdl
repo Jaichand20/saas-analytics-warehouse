@@ -1,7 +1,7 @@
 table mrr_monthly
 	lineageTag: 78fea7e8-00d1-4653-8110-35e52f540c09
 
-	measure 'Total MRR' = MAX(mrr_monthly[total_mrr])
+	measure 'Total MRR' = VAR LatestMonth = CALCULATE(MAX(mrr_monthly[month_start])) RETURN CALCULATE(SUM(mrr_monthly[total_mrr]), mrr_monthly[month_start] = LatestMonth)
 		lineageTag: 17e7cf8d-25a2-4426-8334-25ed549f68aa
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
