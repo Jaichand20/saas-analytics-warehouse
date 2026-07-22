@@ -1,0 +1,303 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "729c860fc66e6810d804",
+  "position": {
+    "x": 10.448979591836734,
+    "y": 19.591836734693878,
+    "z": 0,
+    "height": 232.48979591836735,
+    "width": 940.40816326530614,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "churn_risk_accounts"
+                    }
+                  },
+                  "Property": "account_id"
+                }
+              },
+              "queryRef": "churn_risk_accounts.account_id",
+              "nativeQueryRef": "account_id"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "churn_risk_accounts"
+                        }
+                      },
+                      "Property": "usage_ratio"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(churn_risk_accounts.usage_ratio)",
+              "nativeQueryRef": "Sum of usage_ratio"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "churn_risk_accounts"
+                        }
+                      },
+                      "Property": "unhealthy_invoices_recent"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(churn_risk_accounts.unhealthy_invoices_recent)",
+              "nativeQueryRef": "Sum of unhealthy_invoices_recent"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "churn_risk_accounts"
+                        }
+                      },
+                      "Property": "churn_risk_score"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(churn_risk_accounts.churn_risk_score)",
+              "nativeQueryRef": "Sum of churn_risk_score"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "churn_risk_accounts"
+                    }
+                  },
+                  "Property": "is_high_risk"
+                }
+              },
+              "queryRef": "churn_risk_accounts.is_high_risk",
+              "nativeQueryRef": "is_high_risk"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "ltv_by_account"
+                    }
+                  },
+                  "Property": "company_name"
+                }
+              },
+              "queryRef": "ltv_by_account.company_name",
+              "nativeQueryRef": "company_name"
+            },
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ltv_by_account"
+                        }
+                      },
+                      "Property": "ltv_usd"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(ltv_by_account.ltv_usd)",
+              "nativeQueryRef": "Sum of ltv_usd"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "84e75401ccb216dab482",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "churn_risk_accounts"
+              }
+            },
+            "Property": "account_id"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "534a5c154cc420de437c",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "churn_risk_accounts"
+                  }
+                },
+                "Property": "usage_ratio"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c5b5ff21c352b6179d68",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "churn_risk_accounts"
+                  }
+                },
+                "Property": "unhealthy_invoices_recent"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4cc81fbed7922ec21c64",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "churn_risk_accounts"
+                  }
+                },
+                "Property": "churn_risk_score"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "33eceadd946ba061990e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "churn_risk_accounts"
+              }
+            },
+            "Property": "is_high_risk"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "c",
+              "Entity": "churn_risk_accounts",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "c"
+                          }
+                        },
+                        "Property": "is_high_risk"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "true"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "4bde3f64a86b1e025370",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "ltv_by_account"
+              }
+            },
+            "Property": "company_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "b354a4ebc919886bc59d",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ltv_by_account"
+                  }
+                },
+                "Property": "ltv_usd"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

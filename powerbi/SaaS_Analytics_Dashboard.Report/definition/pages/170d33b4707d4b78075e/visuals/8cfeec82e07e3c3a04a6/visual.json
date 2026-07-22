@@ -1,0 +1,264 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "8cfeec82e07e3c3a04a6",
+  "position": {
+    "x": 655.70552147239266,
+    "y": 36.646216768916155,
+    "z": 1001,
+    "height": 279.42740286298567,
+    "width": 280.08179959100204,
+    "tabOrder": 1001
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mrr_monthly"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "month_start"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Year"
+                }
+              },
+              "queryRef": "mrr_monthly.month_start.Variation.Date Hierarchy.Year",
+              "nativeQueryRef": "month_start Year",
+              "active": true
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mrr_monthly"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "month_start"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Quarter"
+                }
+              },
+              "queryRef": "mrr_monthly.month_start.Variation.Date Hierarchy.Quarter",
+              "nativeQueryRef": "month_start Quarter",
+              "active": false
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mrr_monthly"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "month_start"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Month"
+                }
+              },
+              "queryRef": "mrr_monthly.month_start.Variation.Date Hierarchy.Month",
+              "nativeQueryRef": "month_start Month",
+              "active": false
+            },
+            {
+              "field": {
+                "HierarchyLevel": {
+                  "Expression": {
+                    "Hierarchy": {
+                      "Expression": {
+                        "PropertyVariationSource": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Entity": "mrr_monthly"
+                            }
+                          },
+                          "Name": "Variation",
+                          "Property": "month_start"
+                        }
+                      },
+                      "Hierarchy": "Date Hierarchy"
+                    }
+                  },
+                  "Level": "Day"
+                }
+              },
+              "queryRef": "mrr_monthly.month_start.Variation.Date Hierarchy.Day",
+              "nativeQueryRef": "month_start Day",
+              "active": false
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mrr_monthly"
+                    }
+                  },
+                  "Property": "Total MRR"
+                }
+              },
+              "queryRef": "mrr_monthly.Total MRR",
+              "nativeQueryRef": "Total MRR"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "ce54d5a600e4085ca0ad",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "mrr_monthly"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "month_start"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Year"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "dad54bafb092e021b651",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "mrr_monthly"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "month_start"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Quarter"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "e2e8cd712db4d8362ca1",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "mrr_monthly"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "month_start"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Month"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "83651f3ac350b8abda80",
+        "field": {
+          "HierarchyLevel": {
+            "Expression": {
+              "Hierarchy": {
+                "Expression": {
+                  "PropertyVariationSource": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "mrr_monthly"
+                      }
+                    },
+                    "Name": "Variation",
+                    "Property": "month_start"
+                  }
+                },
+                "Hierarchy": "Date Hierarchy"
+              }
+            },
+            "Level": "Day"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "534c704c888b45673d27",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mrr_monthly"
+              }
+            },
+            "Property": "Total MRR"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

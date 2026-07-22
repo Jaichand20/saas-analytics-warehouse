@@ -1,0 +1,117 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "fc0eb9559650e886a300",
+  "position": {
+    "x": 339.6319018404908,
+    "y": 36.646216768916155,
+    "z": 1000,
+    "height": 299.71370143149284,
+    "width": 300.3680981595092,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mrr_monthly"
+                    }
+                  },
+                  "Property": "Estimated Annual Savings ($)"
+                }
+              },
+              "queryRef": "mrr_monthly.Estimated Annual Savings ($)",
+              "nativeQueryRef": "Estimated Annual Savings ($)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mrr_monthly"
+                  }
+                },
+                "Property": "Estimated Annual Savings ($)"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Estimated Annual Savings (assumes 40% successful retention rate on flagged accounts)'"
+                }
+              }
+            },
+            "alignment": {
+              "expr": {
+                "Literal": {
+                  "Value": "'left'"
+                }
+              }
+            },
+            "titleWrap": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "13D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f2c0a9d257ca9a507593",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mrr_monthly"
+              }
+            },
+            "Property": "Estimated Annual Savings ($)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

@@ -1,0 +1,70 @@
+table cohort_retention
+	lineageTag: 8603c320-75fa-427c-9a93-2ae00dd7ee75
+
+	measure 'Retention % (Month N)' = CALCULATE(AVERAGE(cohort_retention[retention_pct]), cohort_retention[months_since_signup] = SELECTEDVALUE(cohort_retention[months_since_signup]))
+		lineageTag: 9a1b2c3d-4e5f-4066-8a2b-3c4d5e6f7086
+
+	column cohort_month
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 5142f242-712f-4c3c-a6d7-ce12ff5a621a
+		summarizeBy: none
+		sourceColumn: cohort_month
+
+		variation Variation
+			isDefault
+			relationship: 10a7b2be-26a4-4de3-a17e-68bab45710e7
+			defaultHierarchy: LocalDateTable_3ad287e8-7c83-4027-93b2-41934c4e13bd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column months_since_signup
+		dataType: int64
+		formatString: 0
+		lineageTag: c897b4b1-7ff8-4cf2-8cba-264a93819e02
+		summarizeBy: sum
+		sourceColumn: months_since_signup
+
+		annotation SummarizationSetBy = Automatic
+
+	column cohort_size
+		dataType: int64
+		formatString: 0
+		lineageTag: 54b30e3c-ccda-443a-b30a-94f503b8f23e
+		summarizeBy: sum
+		sourceColumn: cohort_size
+
+		annotation SummarizationSetBy = Automatic
+
+	column active_accounts
+		dataType: int64
+		formatString: 0
+		lineageTag: 44cd6033-175a-4867-85e4-d8aa458f065c
+		summarizeBy: sum
+		sourceColumn: active_accounts
+
+		annotation SummarizationSetBy = Automatic
+
+	column retention_pct
+		dataType: double
+		lineageTag: 4a40d6c9-70df-4ea1-911c-d5a6a7faf260
+		summarizeBy: sum
+		sourceColumn: retention_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition cohort_retention = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"saas-analytics-wh-26_Database" = Source{[Name="saas-analytics-wh-26",Kind="Database"]}[Data],
+				    marts_Schema = #"saas-analytics-wh-26_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    cohort_retention_Table = marts_Schema{[Name="cohort_retention",Kind="Table"]}[Data]
+				in
+				    cohort_retention_Table
+

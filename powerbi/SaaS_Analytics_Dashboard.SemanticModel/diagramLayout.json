@@ -1,0 +1,87 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 0
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 48,
+            "y": 467
+          },
+          "nodeIndex": "churn_risk_accounts",
+          "nodeLineageTag": "8f09c76f-1261-4843-9c2c-bc078a31c6d9",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 630,
+            "y": 438
+          },
+          "nodeIndex": "cohort_retention",
+          "nodeLineageTag": "8603c320-75fa-427c-9a93-2ae00dd7ee75",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1053,
+            "y": 428
+          },
+          "nodeIndex": "enterprise_mrr_rollup",
+          "nodeLineageTag": "8d933333-306c-4626-a703-25c6c0a4e388",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": -37
+          },
+          "nodeIndex": "ltv_by_account",
+          "nodeLineageTag": "e9c2fd4f-0ced-42ce-bb17-18620ebeb245",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1415,
+            "y": 272
+          },
+          "nodeIndex": "mrr_monthly",
+          "nodeLineageTag": "78fea7e8-00d1-4653-8110-35e52f540c09",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 100,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

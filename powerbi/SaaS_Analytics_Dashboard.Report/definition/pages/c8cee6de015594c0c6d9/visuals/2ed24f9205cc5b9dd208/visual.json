@@ -1,0 +1,139 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "2ed24f9205cc5b9dd208",
+  "position": {
+    "x": 10.448979591836734,
+    "y": 19.591836734693878,
+    "z": 0,
+    "height": 369.63265306122452,
+    "width": 1052.7346938775511,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "lineChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "cohort_retention"
+                    }
+                  },
+                  "Property": "months_since_signup"
+                }
+              },
+              "queryRef": "cohort_retention.months_since_signup",
+              "nativeQueryRef": "months_since_signup",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "cohort_retention"
+                    }
+                  },
+                  "Property": "cohort_month"
+                }
+              },
+              "queryRef": "cohort_retention.cohort_month",
+              "nativeQueryRef": "cohort_month"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "cohort_retention"
+                    }
+                  },
+                  "Property": "Retention % (Month N)"
+                }
+              },
+              "queryRef": "cohort_retention.Retention % (Month N)",
+              "nativeQueryRef": "Retention % (Month N)"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "cohort_retention"
+                  }
+                },
+                "Property": "cohort_month"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "f43abc05a2390ae71b07",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "cohort_retention"
+              }
+            },
+            "Property": "months_since_signup"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "c783ce20a08be05aa429",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "cohort_retention"
+              }
+            },
+            "Property": "cohort_month"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "5bddd474096842934609",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "cohort_retention"
+              }
+            },
+            "Property": "Retention % (Month N)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

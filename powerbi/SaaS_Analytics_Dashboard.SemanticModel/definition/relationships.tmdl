@@ -1,0 +1,16 @@
+relationship 10a7b2be-26a4-4de3-a17e-68bab45710e7
+	joinOnDateBehavior: datePartOnly
+	fromColumn: cohort_retention.cohort_month
+	toColumn: LocalDateTable_3ad287e8-7c83-4027-93b2-41934c4e13bd.Date
+
+relationship b13700ba-7b8e-4dff-8ff1-a9a832f72e5a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: mrr_monthly.month_start
+	toColumn: LocalDateTable_ccba01fc-ca5b-46c6-a486-9feaba925cb2.Date
+
+relationship AutoDetected_eed67447-c1d2-4365-8db8-73af5f3bf42e
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: churn_risk_accounts.account_id
+	toColumn: ltv_by_account.account_id
+

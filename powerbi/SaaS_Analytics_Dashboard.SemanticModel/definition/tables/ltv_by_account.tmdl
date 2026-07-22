@@ -1,0 +1,81 @@
+table ltv_by_account
+	lineageTag: e9c2fd4f-0ced-42ce-bb17-18620ebeb245
+
+	measure 'Average LTV' = AVERAGE(ltv_by_account[ltv_usd])
+		lineageTag: 9a1b2c3d-4e5f-4065-8a2b-3c4d5e6f7085
+
+	column account_id
+		dataType: string
+		lineageTag: 10a12ce3-fb5e-4aba-969f-70d15822baf1
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column company_name
+		dataType: string
+		lineageTag: 25b407a2-dae5-464e-b64c-aa6ba2d52e5e
+		summarizeBy: none
+		sourceColumn: company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column industry
+		dataType: string
+		lineageTag: da7eb381-5afb-4c16-bec7-2d131dd9d919
+		summarizeBy: none
+		sourceColumn: industry
+
+		annotation SummarizationSetBy = Automatic
+
+	column ltv_usd
+		dataType: double
+		lineageTag: d46abec7-e831-4269-93fa-3e6fc54f2f06
+		summarizeBy: sum
+		sourceColumn: ltv_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ltv_quartile
+		dataType: int64
+		formatString: 0
+		lineageTag: 65d979fe-62ba-46c4-89bc-2a8b12c7d940
+		summarizeBy: sum
+		sourceColumn: ltv_quartile
+
+		annotation SummarizationSetBy = Automatic
+
+	column ltv_percentile
+		dataType: double
+		lineageTag: 3673d8f3-61a9-434e-b279-b97e57d0b90a
+		summarizeBy: sum
+		sourceColumn: ltv_percentile
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column rank_within_industry
+		dataType: int64
+		formatString: 0
+		lineageTag: 794bb871-acdf-4507-81cb-d1122a506717
+		summarizeBy: sum
+		sourceColumn: rank_within_industry
+
+		annotation SummarizationSetBy = Automatic
+
+	partition ltv_by_account = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"saas-analytics-wh-26_Database" = Source{[Name="saas-analytics-wh-26",Kind="Database"]}[Data],
+				    marts_Schema = #"saas-analytics-wh-26_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    ltv_by_account_Table = marts_Schema{[Name="ltv_by_account",Kind="Table"]}[Data]
+				in
+				    ltv_by_account_Table
+
+	annotation PBI_ResultType = Table
+
