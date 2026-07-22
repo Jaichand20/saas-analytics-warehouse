@@ -1,0 +1,49 @@
+table enterprise_mrr_rollup
+	lineageTag: 8d933333-306c-4626-a703-25c6c0a4e388
+
+	column root_account_id
+		dataType: string
+		lineageTag: ce591372-86d9-4b3d-bf73-19b5af9d2828
+		summarizeBy: none
+		sourceColumn: root_account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column root_company_name
+		dataType: string
+		lineageTag: 6b896046-afd1-42d8-aba6-fde4b95e2d33
+		summarizeBy: none
+		sourceColumn: root_company_name
+
+		annotation SummarizationSetBy = Automatic
+
+	column accounts_in_hierarchy
+		dataType: int64
+		formatString: 0
+		lineageTag: 27cbb27f-d611-43f0-aa71-bc79d16177c6
+		summarizeBy: sum
+		sourceColumn: accounts_in_hierarchy
+
+		annotation SummarizationSetBy = Automatic
+
+	column rollup_mrr_usd
+		dataType: double
+		lineageTag: 72bc9a47-7e41-436e-902e-d21fee652c2c
+		summarizeBy: sum
+		sourceColumn: rollup_mrr_usd
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition enterprise_mrr_rollup = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"saas-analytics-wh-26_Database" = Source{[Name="saas-analytics-wh-26",Kind="Database"]}[Data],
+				    marts_Schema = #"saas-analytics-wh-26_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    enterprise_mrr_rollup_Table = marts_Schema{[Name="enterprise_mrr_rollup",Kind="Table"]}[Data]
+				in
+				    enterprise_mrr_rollup_Table
+

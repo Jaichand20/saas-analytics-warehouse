@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "50dc161f0781772e8042",
+  "position": {
+    "x": 292.57142857142856,
+    "y": 296.48979591836735,
+    "z": 2,
+    "height": 156.73469387755102,
+    "width": 208.9795918367347,
+    "tabOrder": 2
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "churn_risk_accounts"
+                    }
+                  },
+                  "Property": "Churn Rate %"
+                }
+              },
+              "queryRef": "churn_risk_accounts.Churn Rate %",
+              "nativeQueryRef": "Churn Rate %"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "churn_risk_accounts"
+                  }
+                },
+                "Property": "Churn Rate %"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "50d089927b08b24e2b03",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "churn_risk_accounts"
+              }
+            },
+            "Property": "Churn Rate %"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

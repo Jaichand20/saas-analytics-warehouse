@@ -1,0 +1,184 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "0238d5909b53900c28c6",
+  "position": {
+    "x": 570.77551020408168,
+    "y": 296.48979591836735,
+    "z": 3,
+    "height": 256,
+    "width": 620.40816326530614,
+    "tabOrder": 3
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "churn_risk_accounts"
+                    }
+                  },
+                  "Property": "account_id"
+                }
+              },
+              "queryRef": "churn_risk_accounts.account_id",
+              "nativeQueryRef": "account_id",
+              "active": true
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "churn_risk_accounts"
+                        }
+                      },
+                      "Property": "churn_risk_score"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(churn_risk_accounts.churn_risk_score)",
+              "nativeQueryRef": "Sum of churn_risk_score",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "ltv_by_account"
+                        }
+                      },
+                      "Property": "ltv_usd"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(ltv_by_account.ltv_usd)",
+              "nativeQueryRef": "Sum of ltv_usd"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "dataPoint": [
+        {
+          "properties": {
+            "fillRule": {
+              "linearGradient2": {
+                "min": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'minColor'"
+                      }
+                    }
+                  }
+                },
+                "max": {
+                  "color": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'maxColor'"
+                      }
+                    }
+                  }
+                },
+                "nullColoringStrategy": {
+                  "strategy": {
+                    "expr": {
+                      "Literal": {
+                        "Value": "'asZero'"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2dae47576d6c91e28c64",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "churn_risk_accounts"
+                  }
+                },
+                "Property": "churn_risk_score"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "763bbb23e3a18d530056",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "ltv_by_account"
+                  }
+                },
+                "Property": "ltv_usd"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "6066ac5b87b808ea0098",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "churn_risk_accounts"
+              }
+            },
+            "Property": "account_id"
+          }
+        },
+        "type": "Categorical"
+      }
+    ]
+  }
+}

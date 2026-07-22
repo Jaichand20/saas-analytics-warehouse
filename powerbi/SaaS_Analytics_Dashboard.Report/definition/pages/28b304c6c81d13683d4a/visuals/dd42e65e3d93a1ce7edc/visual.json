@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "dd42e65e3d93a1ce7edc",
+  "position": {
+    "x": 10.448979591836734,
+    "y": 296.48979591836735,
+    "z": 1,
+    "height": 156.73469387755102,
+    "width": 210.28571428571428,
+    "tabOrder": 1
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "churn_risk_accounts"
+                    }
+                  },
+                  "Property": "High Risk Accounts"
+                }
+              },
+              "queryRef": "churn_risk_accounts.High Risk Accounts",
+              "nativeQueryRef": "High Risk Accounts"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "churn_risk_accounts"
+                  }
+                },
+                "Property": "High Risk Accounts"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "48cdc9b60deee5502c1e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "churn_risk_accounts"
+              }
+            },
+            "Property": "High Risk Accounts"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

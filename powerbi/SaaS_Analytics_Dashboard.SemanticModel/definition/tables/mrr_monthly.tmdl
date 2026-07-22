@@ -1,0 +1,95 @@
+table mrr_monthly
+	lineageTag: 78fea7e8-00d1-4653-8110-35e52f540c09
+
+	measure 'Total MRR' = MAX(mrr_monthly[total_mrr])
+		lineageTag: 17e7cf8d-25a2-4426-8334-25ed549f68aa
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Net New MRR (Latest Month)' = VAR LatestMonth = CALCULATE(MAX(mrr_monthly[month_start])) RETURN CALCULATE(SUM(mrr_monthly[net_new_mrr]), mrr_monthly[month_start] = LatestMonth)
+		lineageTag: 7d95a39c-7bc3-463b-9903-8a41f6ff48bf
+
+	measure 'MoM Growth % (Latest Month)' = VAR LatestMonth = CALCULATE(MAX(mrr_monthly[month_start])) RETURN CALCULATE(SUM(mrr_monthly[mom_growth_pct]), mrr_monthly[month_start] = LatestMonth) * 100
+		lineageTag: 9a1b2c3d-4e5f-4061-8a2b-3c4d5e6f7081
+
+	measure 'Estimated Annual Savings ($)' = 24276 * 0.4
+		lineageTag: 9a1b2c3d-4e5f-4062-8a2b-3c4d5e6f7082
+
+	column month_start
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 41ee5e24-f406-4ac0-a588-99df0886a63b
+		summarizeBy: none
+		sourceColumn: month_start
+
+		variation Variation
+			isDefault
+			relationship: b13700ba-7b8e-4dff-8ff1-a9a832f72e5a
+			defaultHierarchy: LocalDateTable_ccba01fc-ca5b-46c6-a486-9feaba925cb2.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column total_mrr
+		dataType: double
+		lineageTag: bbb272d8-3e8a-4c18-bf93-23c4f23c8a42
+		summarizeBy: sum
+		sourceColumn: total_mrr
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column active_accounts
+		dataType: int64
+		formatString: 0
+		lineageTag: 5285bf3a-bf69-4f59-9d39-c2592d6a0950
+		summarizeBy: sum
+		sourceColumn: active_accounts
+
+		annotation SummarizationSetBy = Automatic
+
+	column prior_month_mrr
+		dataType: double
+		lineageTag: 85a4cadc-4d53-4ac4-86c8-7b0e93c4c237
+		summarizeBy: sum
+		sourceColumn: prior_month_mrr
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column net_new_mrr
+		dataType: double
+		lineageTag: 7e52e3a9-b627-486d-8c76-19b632a7eab2
+		summarizeBy: sum
+		sourceColumn: net_new_mrr
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column mom_growth_pct
+		dataType: double
+		lineageTag: 8192cea5-9c2a-43a5-a742-ff3baa8754b5
+		summarizeBy: sum
+		sourceColumn: mom_growth_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition mrr_monthly = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"saas-analytics-wh-26_Database" = Source{[Name="saas-analytics-wh-26",Kind="Database"]}[Data],
+				    marts_Schema = #"saas-analytics-wh-26_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    mrr_monthly_Table = marts_Schema{[Name="mrr_monthly",Kind="Table"]}[Data]
+				in
+				    mrr_monthly_Table
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "b78f9e67315d8cdab07b",
+  "position": {
+    "x": 10.61139896373057,
+    "y": 19.896373056994818,
+    "z": 0,
+    "height": 700.3523316062176,
+    "width": 866.15544041450778,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "enterprise_mrr_rollup"
+                    }
+                  },
+                  "Property": "root_company_name"
+                }
+              },
+              "queryRef": "enterprise_mrr_rollup.root_company_name",
+              "nativeQueryRef": "root_company_name",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "enterprise_mrr_rollup"
+                        }
+                      },
+                      "Property": "rollup_mrr_usd"
+                    }
+                  },
+                  "Function": 0
+                }
+              },
+              "queryRef": "Sum(enterprise_mrr_rollup.rollup_mrr_usd)",
+              "nativeQueryRef": "Sum of rollup_mrr_usd"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Aggregation": {
+                "Expression": {
+                  "Column": {
+                    "Expression": {
+                      "SourceRef": {
+                        "Entity": "enterprise_mrr_rollup"
+                      }
+                    },
+                    "Property": "rollup_mrr_usd"
+                  }
+                },
+                "Function": 0
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d9cf10501b183ade015c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "enterprise_mrr_rollup"
+              }
+            },
+            "Property": "root_company_name"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "ab0aaec775c87aa2c0e7",
+        "field": {
+          "Aggregation": {
+            "Expression": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "enterprise_mrr_rollup"
+                  }
+                },
+                "Property": "rollup_mrr_usd"
+              }
+            },
+            "Function": 0
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

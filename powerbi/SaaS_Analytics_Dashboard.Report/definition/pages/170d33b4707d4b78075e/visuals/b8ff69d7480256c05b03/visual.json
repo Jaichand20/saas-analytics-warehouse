@@ -1,0 +1,74 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.10.0/schema.json",
+  "name": "b8ff69d7480256c05b03",
+  "position": {
+    "x": 59.550102249488752,
+    "y": 56.932515337423311,
+    "z": 0,
+    "height": 279.42740286298567,
+    "width": 280.08179959100204,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "mrr_monthly"
+                    }
+                  },
+                  "Property": "Total MRR"
+                }
+              },
+              "queryRef": "mrr_monthly.Total MRR",
+              "nativeQueryRef": "Total MRR"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "mrr_monthly"
+                  }
+                },
+                "Property": "Total MRR"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "7bf429837cd9278205dd",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "mrr_monthly"
+              }
+            },
+            "Property": "Total MRR"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

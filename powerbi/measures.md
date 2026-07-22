@@ -11,17 +11,22 @@ Latest month's total MRR. Use `MAX` (not `SUM`) since `mrr_monthly` is already o
 
 ```dax
 Net New MRR (Latest Month) =
+VAR LatestMonth = CALCULATE(MAX(mrr_monthly[month_start]))
+RETURN
 CALCULATE(
     SUM(mrr_monthly[net_new_mrr]),
-    mrr_monthly[month_start] = CALCULATE(MAX(mrr_monthly[month_start]))
+    mrr_monthly[month_start] = LatestMonth
 )
 ```
+(A nested `CALCULATE` isn't allowed directly inside another `CALCULATE`'s boolean filter argument - DAX requires the inner value be resolved first via a `VAR`.)
 
 ```dax
 MoM Growth % (Latest Month) =
+VAR LatestMonth = CALCULATE(MAX(mrr_monthly[month_start]))
+RETURN
 CALCULATE(
     SUM(mrr_monthly[mom_growth_pct]),
-    mrr_monthly[month_start] = CALCULATE(MAX(mrr_monthly[month_start]))
+    mrr_monthly[month_start] = LatestMonth
 ) * 100
 ```
 

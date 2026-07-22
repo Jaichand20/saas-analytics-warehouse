@@ -1,0 +1,25 @@
+model Model
+	culture: en-GB
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-GB
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["churn_risk_accounts","cohort_retention","enterprise_mrr_rollup","ltv_by_account","mrr_monthly"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table churn_risk_accounts
+ref table cohort_retention
+ref table DateTableTemplate_d233708c-4312-4f66-90ca-9726277b728d
+ref table LocalDateTable_3ad287e8-7c83-4027-93b2-41934c4e13bd
+ref table enterprise_mrr_rollup
+ref table ltv_by_account
+ref table mrr_monthly
+ref table LocalDateTable_ccba01fc-ca5b-46c6-a486-9feaba925cb2
+
+ref cultureInfo en-GB
+

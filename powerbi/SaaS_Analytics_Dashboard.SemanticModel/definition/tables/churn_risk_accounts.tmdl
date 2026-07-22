@@ -1,0 +1,86 @@
+table churn_risk_accounts
+	lineageTag: 8f09c76f-1261-4843-9c2c-bc078a31c6d9
+
+	measure 'High Risk Accounts' = CALCULATE(COUNTROWS(churn_risk_accounts), churn_risk_accounts[is_high_risk] = TRUE())
+		lineageTag: 9a1b2c3d-4e5f-4063-8a2b-3c4d5e6f7083
+
+	measure 'Churn Rate %' = DIVIDE([High Risk Accounts], COUNTROWS(churn_risk_accounts)) * 100
+		lineageTag: 9a1b2c3d-4e5f-4064-8a2b-3c4d5e6f7084
+
+	column account_id
+		dataType: string
+		lineageTag: 48ed527b-c577-4ba8-8bb1-631e81db1c01
+		summarizeBy: none
+		sourceColumn: account_id
+
+		annotation SummarizationSetBy = Automatic
+
+	column usage_units_recent
+		dataType: double
+		lineageTag: fe966f8a-7c15-418c-bdc2-a6a3cbadccdb
+		summarizeBy: sum
+		sourceColumn: usage_units_recent
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column usage_units_prior
+		dataType: double
+		lineageTag: ecd12908-c790-400a-9e2a-ae3285bcabbb
+		summarizeBy: sum
+		sourceColumn: usage_units_prior
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column usage_ratio
+		dataType: double
+		lineageTag: 5404ef22-f3b8-4e81-9f24-97c2f3829c4e
+		summarizeBy: sum
+		sourceColumn: usage_ratio
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column unhealthy_invoices_recent
+		dataType: int64
+		formatString: 0
+		lineageTag: 67c5d3d5-d027-4f4b-a672-120eddd87eb4
+		summarizeBy: sum
+		sourceColumn: unhealthy_invoices_recent
+
+		annotation SummarizationSetBy = Automatic
+
+	column churn_risk_score
+		dataType: double
+		lineageTag: 91506c74-322a-4148-8b15-004c1c8d98bc
+		summarizeBy: sum
+		sourceColumn: churn_risk_score
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column is_high_risk
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 16c593a8-38a3-451e-9ef6-a4a536429937
+		summarizeBy: none
+		sourceColumn: is_high_risk
+
+		annotation SummarizationSetBy = Automatic
+
+	partition churn_risk_accounts = m
+		mode: import
+		source =
+				let
+				    Source = GoogleBigQuery.Database([Implementation="2.0"]),
+				    #"saas-analytics-wh-26_Database" = Source{[Name="saas-analytics-wh-26",Kind="Database"]}[Data],
+				    marts_Schema = #"saas-analytics-wh-26_Database"{[Name="marts",Kind="Schema"]}[Data],
+				    churn_risk_accounts_Table = marts_Schema{[Name="churn_risk_accounts",Kind="Table"]}[Data]
+				in
+				    churn_risk_accounts_Table
+

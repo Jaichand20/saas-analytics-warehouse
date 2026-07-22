@@ -23,6 +23,8 @@ data_generator/output/
 
 # Power BI cache
 powerbi/*.pbix.bak
+**/.pbi/cache.abf
+**/.pbi/localSettings.json
 
 # OS
 .DS_Store
